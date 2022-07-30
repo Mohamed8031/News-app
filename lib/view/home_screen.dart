@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/view/pages/inner_card.dart';
 import 'package:news_app/view/pages/overview_pages/business.dart';
 import 'package:news_app/view/pages/overview_pages/entertainment.dart';
 import 'package:news_app/view/pages/overview_pages/general.dart';
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/sports.png",
     "assets/technology.png",
   ];
+
   List categoryDirectory = [
     GeneralScreen(),
     BusinessScreen(),
@@ -45,16 +47,66 @@ class _HomeScreenState extends State<HomeScreen> {
     TechnologyScreen(),
   ];
 
-  // get index => categoryDirectory[index];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: defaultIntroCard(
-        categoryName,
-        categoryImage,
-        () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => categoryDirectory[2])),
+    return SafeArea(
+      child: Scaffold(
+          body: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: categoryName.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () =>
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => categoryDirectory[index])),
+                child: Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          SizedBox(
+                            height: 200,
+                            width: double.infinity,
+                            child: Image.asset(
+                              categoryImage[index],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Container(
+                            color: Colors.black.withOpacity(.7),
+                            width: double.infinity,
+                            height: 200,
+                          ),
+                          Text(
+                            categoryName[index].toUpperCase(),
+                            style: const TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
       ),
     );
   }

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../controller/api_service.dart';
 import '../../../model/article_model.dart';
-import '../../reusable_components/default_list_tile.dart';
+import '../inner_card.dart';
+import '../outer_card_builder.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({Key? key}) : super(key: key);
@@ -18,15 +19,44 @@ class _GeneralScreenState extends State<GeneralScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
       body: FutureBuilder(
-        future: client.getApi(client.category),
+        future: client.getApi("general"),
         builder:
             (BuildContext context, AsyncSnapshot<List<Articles>> snapshot) {
-          client.category = "general";
+          client.getApi("general");
           if (snapshot.hasData) {
             List<Articles>? myArticle = snapshot.data;
-            return defaultListTile(myArticle);
+            return ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: myArticle?.length,
+              itemBuilder: (context, index) {
+                return  GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) {
+                        return Scaffold(
+                          body: innerCard(
+                            "${myArticle?[index].urlToImage}",
+                            "${myArticle?[index].title}",
+                            "${myArticle?[index].source!.name}",
+                            "${myArticle?[index].publishedAt}",
+                            "${myArticle?[index].content}",
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  child: outerCardBuilder(
+                    "${myArticle?[index].urlToImage}",
+                    "${myArticle?[index].title}",
+                    "${myArticle?[index].source!.name}",
+                    "${myArticle?[index].publishedAt}",
+                    "${myArticle?[index].content}",
+                  ),
+                );
+              },
+            );
           }
           return const Center(
             child: Padding(

@@ -5,7 +5,6 @@ import 'package:http/http.dart';
 import 'package:news_app/model/article_model.dart';
 
 class ApiService {
-  String category = "";
 
   Future<List<Articles>> getApi(category) async {
 
