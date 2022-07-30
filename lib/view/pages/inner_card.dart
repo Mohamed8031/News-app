@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 Widget innerCard(
   String image,
@@ -63,7 +64,7 @@ Widget innerCard(
                     style: const TextStyle(fontSize: 16, color: Colors.black54),
                   ),
                   Text(
-                    "${DateTime.parse(date).toString().substring(11, 16)}  ",
+                    "${DateFormat("h:mm a").format(DateTime.parse(date))}  ",
                     style: const TextStyle(fontSize: 16, color: Colors.black54),
                   ),
                 ],
@@ -82,7 +83,7 @@ Widget innerCard(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    content,
+                    content.substring(0, content.length -13),
                     style: const TextStyle(fontSize: 19, color: Colors.black),
                   ),
                 ),
@@ -94,3 +95,4 @@ Widget innerCard(
     ),
   );
 }
+// DateTime.parse(date).toString().substring(11, 16)

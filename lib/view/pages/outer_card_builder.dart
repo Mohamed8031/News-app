@@ -5,7 +5,7 @@ Widget outerCardBuilder(
   String title,
   String sourceName,
   String date,
-  String content,
+  String description,
 ) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
@@ -55,7 +55,7 @@ Widget outerCardBuilder(
             Text(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              content,
+              description,
               style:
                   TextStyle(fontSize: 16, color: Colors.black.withOpacity(.7)),
             ),
