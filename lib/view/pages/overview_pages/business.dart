@@ -5,6 +5,7 @@ import 'package:news_app/view/pages/outer_card_builder.dart';
 import '../../../controller/api_service.dart';
 import '../../../model/article_model.dart';
 import '../inner_card.dart';
+import '../loading.dart';
 
 class BusinessScreen extends StatefulWidget {
   const BusinessScreen({Key? key}) : super(key: key);
@@ -57,12 +58,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
               },
             );
           }
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
-              child: LinearProgressIndicator(),
-            ),
-          );
+          return defaultLoading();
         },
       ),
     );

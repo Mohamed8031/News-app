@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../controller/api_service.dart';
 import '../../../model/article_model.dart';
 import '../inner_card.dart';
+import '../loading.dart';
 import '../outer_card_builder.dart';
 
 class SportsScreen extends StatefulWidget {
@@ -57,12 +58,7 @@ class _SportsScreenState extends State<SportsScreen> {
               },
             );
           }
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
-              child: LinearProgressIndicator(),
-            ),
-          );
+          return defaultLoading();
         },
       ),
     );
