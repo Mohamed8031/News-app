@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/view/pages/inner_card.dart';
+import 'package:news_app/view/reusable_components/inner_card.dart';
 import 'package:news_app/view/pages/overview_pages/business.dart';
 import 'package:news_app/view/pages/overview_pages/entertainment.dart';
 import 'package:news_app/view/pages/overview_pages/general.dart';

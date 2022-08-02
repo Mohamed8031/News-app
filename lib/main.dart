@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:news_app/view/pages/overview_pages/language_screen.dart';
 import 'package:news_app/view/splash_screen/splash_screen.dart';
 
 void main() {
